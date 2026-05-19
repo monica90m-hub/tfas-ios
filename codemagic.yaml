@@ -1,0 +1,20 @@
+workflows:
+  ios-workflow:
+    name: TFAS Diagnostics iOS
+    max_build_duration: 60
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install pods
+        script: pod install
+      - name: Build iOS
+        script: |
+          xcodebuild \
+            -workspace "TFAS Diagnostics.xcworkspace" \
+            -scheme "TFAS Diagnostics" \
+            -configuration Release \
+            -archivePath build/TFASDiagnostics.xcarchive \
+            archive
+    artifacts:
+      - build/TFASDiagnostics.xcarchive
