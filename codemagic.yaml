@@ -28,6 +28,7 @@ workflows:
             -configuration Release \
             -archivePath build/TFASDiagnostics.xcarchive \
             CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM=H7RBA8ZZN9 \
             PROVISIONING_PROFILE_SPECIFIER="TFAS Diagnostics AppStore" \
             archive
     artifacts:
