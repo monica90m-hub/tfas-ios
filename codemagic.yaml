@@ -5,11 +5,21 @@ workflows:
     environment:
       xcode: latest
       cocoapods: default
+      vars:
+        BUNDLE_ID: "com.tfasdiagnostics.app"
+        XCODE_WORKSPACE: "TFAS Diagnostics.xcworkspace"
+        XCODE_SCHEME: "TFAS Diagnostics"
+    integrations:
+      app_store_connect: AC_API_KEY
+    ios_signing:
+      distribution_type: app_store
+      bundle_identifier: com.tfasdiagnostics.app
     scripts:
       - name: Install pods
         script: pod install
       - name: Build iOS
         script: |
+          xcode-project use-profiles
           xcodebuild \
             -workspace "TFAS Diagnostics.xcworkspace" \
             -scheme "TFAS Diagnostics" \
@@ -18,3 +28,4 @@ workflows:
             archive
     artifacts:
       - build/TFASDiagnostics.xcarchive
+      - "**/*.ipa"
