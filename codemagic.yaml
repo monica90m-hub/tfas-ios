@@ -17,10 +17,7 @@ workflows:
         script: |
           PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
           mkdir -p "$PROFILES_HOME"
-          PROFILE_PATH="$PROFILES_HOME/profile.mobileprovision"
-          echo $CM_PROVISIONING_PROFILE | base64 --decode > "$PROFILE_PATH"
-          UUID=$(grep -a -A 1 "UUID" "$PROFILE_PATH" | grep string | sed -e 's/<string>//' -e 's/<\/string>//' -e 's/ //g')
-          echo "Installed profile UUID: $UUID"
+          echo $CM_PROVISIONING_PROFILE | base64 --decode > "$PROFILES_HOME/profile.mobileprovision"
       - name: Install pods
         script: pod install
       - name: Build iOS
@@ -30,10 +27,8 @@ workflows:
             -scheme "TFAS Diagnostics" \
             -configuration Release \
             -archivePath build/TFASDiagnostics.xcarchive \
-            CODE_SIGN_STYLE=Manual \
             DEVELOPMENT_TEAM=H7RBA8ZZN9 \
-            PROVISIONING_PROFILE_SPECIFIER="TFAS Diagnostics AppStore" \
-            CODE_SIGN_IDENTITY="iPhone Distribution" \
+            CODE_SIGN_STYLE=Automatic \
             archive
     artifacts:
       - build/TFASDiagnostics.xcarchive
