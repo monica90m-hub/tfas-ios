@@ -33,7 +33,7 @@ workflows:
             DEVELOPMENT_TEAM=H7RBA8ZZN9 \
             CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="iPhone Distribution" \
-            PROVISIONING_PROFILE_SPECIFIER="TFAS Diagnostics AppStore" \
+            PROVISIONING_PROFILE_SPECIFIER="20371643-c7f6-4fbf-8f19-1d9825e708a1" \
             -allowProvisioningUpdates \
             archive
     artifacts:
