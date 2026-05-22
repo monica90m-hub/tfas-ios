@@ -2,14 +2,11 @@ workflows:
   ios-workflow:
     name: TFAS Diagnostics iOS
     max_build_duration: 60
+    integrations:
+      app_store_connect: TFAS App Store Connect
     environment:
       xcode: latest
       cocoapods: default
-      groups:
-        - ios_credentials
-      vars:
-        APP_STORE_CONNECT_KEY_IDENTIFIER: "6SMNZY595K"
-        APP_STORE_CONNECT_ISSUER_ID: "23812752-455e-4554-aafe-dbd05e2a54f9"
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.tfasdiagnostics.app
