@@ -8,8 +8,6 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.tfasdiagnostics.app
-        certificate: TFAS iOS Distribution
-        provisioning_profile: TFAS AppStore Profile
     scripts:
       - name: Install pods
         script: pod install
