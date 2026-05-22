@@ -28,7 +28,10 @@ workflows:
             -configuration Release \
             -archivePath build/TFASDiagnostics.xcarchive \
             DEVELOPMENT_TEAM=H7RBA8ZZN9 \
-            CODE_SIGN_STYLE=Automatic \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="iPhone Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="TFAS Diagnostics AppStore" \
+            -allowProvisioningUpdates \
             archive
     artifacts:
       - build/TFASDiagnostics.xcarchive
