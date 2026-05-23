@@ -2,6 +2,8 @@ workflows:
   ios-workflow:
     name: TFAS Diagnostics iOS
     max_build_duration: 60
+    integrations:
+      app_store_connect: TFAS App Store Connect
     environment:
       xcode: latest
       cocoapods: default
@@ -20,6 +22,15 @@ workflows:
             -configuration Release \
             -archivePath build/TFASDiagnostics.xcarchive \
             archive
+      - name: Export IPA
+        script: |
+          xcode-project build-ipa \
+            --workspace "TFAS Diagnostics.xcworkspace" \
+            --scheme "TFAS Diagnostics"
     artifacts:
-      - build/TFASDiagnostics.xcarchive
-      - "**/*.ipa"
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
